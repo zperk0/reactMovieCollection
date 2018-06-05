@@ -1,0 +1,35 @@
+/* ----- General Styles ----- */
+body {
+  padding-top:70px;
+  font-family: Helvetica-Bold;
+    font-size: 15px;
+  background-color: rgba(255, 255, 255, 1);
+}
+.h3, h3 {
+  margin-left: 20px;
+}
+
+.loading-state {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    padding-left: -15px;
+    padding-right: -15px;
+    padding-top: 25%;
+    color: #FFF;
+    background-image: url("/images/ajax-loader.gif");
+    background-size: 50px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.navbar-logo {
+  height:100%;
+  width:auto;
+}
+
+.animated-container {
+    overflow: hidden;
+}
