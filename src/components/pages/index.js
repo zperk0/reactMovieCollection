@@ -6,7 +6,7 @@
 
 const pages = {
   "Movies": {
-      href: "/movies",
+      href: "/",
       navbarItem: true,
       component: MoviesPage
   },
