@@ -21,7 +21,6 @@ export default class MoviesPage extends Component {
     fetchFromAPI() {
         this.setState({users: null});
         getMovieById(this.props.match.params.movieId).then((movieDetails) => {
-          console.log(movieDetails)
           let tableObj = []
           for (var prop in movieDetails) {
               if(!movieDetails.hasOwnProperty(prop)) continue;

@@ -5,16 +5,16 @@
  import MovieDescriptionPage from './MovieDescriptionPage';
 
 const pages = {
-  "Movies": {
-      href: "/",
-      navbarItem: true,
-      component: MoviesPage
-  },
   "Movie Description": {
       href: "/description/:movieId",
       navbarItem: false,
       component: MovieDescriptionPage
   },
+  "Movies": {
+      href: "/",
+      navbarItem: true,
+      component: MoviesPage
+  }
 };
 
 export default pages;
