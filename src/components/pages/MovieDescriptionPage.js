@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import { Link } from 'react-router-dom';
-import { getMovies } from '../../utils/API';
+import { getMovieById } from '../../utils/API';
 
 export default class MoviesPage extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            moviesArr : null,
+            movieDetails : null,
         }
         this.fetchFromAPI = this.fetchFromAPI.bind(this);
     }
@@ -20,8 +20,14 @@ export default class MoviesPage extends Component {
 
     fetchFromAPI() {
         this.setState({users: null});
-        getMovies().then((topMovies) => {
-          this.setState({moviesArr: topMovies.results})
+        getMovieById(this.props.match.params.movieId).then((movieDetails) => {
+          console.log(movieDetails)
+          let tableObj = []
+          for (var prop in movieDetails) {
+              if(!movieDetails.hasOwnProperty(prop)) continue;
+              tableObj.push({title: prop, property: movieDetails[prop]})
+          }
+          this.setState({movieDetails: tableObj, movieTitle: movieDetails.title})
         });
     }
 
@@ -32,7 +38,7 @@ export default class MoviesPage extends Component {
     }
 
     render() {
-        if (this.state.moviesArr === null) {
+        if (this.state.movieDetails === null) {
             return <div className="loading-state"></div>
         }
         const options = {
@@ -44,14 +50,13 @@ export default class MoviesPage extends Component {
             <div>
                 <div id="page-header" className="row">
                     <div className="col-xs-6">
-                        <h3 className="page-title" id="topUser">Movies Collection</h3>
+                        <h3 className="page-title" id="topUser">{this.state.movieTitle}</h3>
                     </div>
                 </div>
                 <div className="table-container">
-                    <BootstrapTable data={ this.state.moviesArr} pagination search={ true } options={options}>
-                        <TableHeaderColumn dataField='original_title'  width="320" columnClassName="tdBg" dataSort isKey>Title</TableHeaderColumn>
-                        <TableHeaderColumn dataField='vote_average' width="190" className='tdBg' columnClassName="tdBg" dataSort>Rating</TableHeaderColumn>
-                        <TableHeaderColumn dataField='createdAt' width="160" className='tdBg' columnClassName="tdBg" dataFormat={this.userDetailsButton}>User Details</TableHeaderColumn>
+                    <BootstrapTable data={ this.state.movieDetails} options={options}>
+                        <TableHeaderColumn dataField='title'  width="320" columnClassName="tdBg" dataSort isKey>Title</TableHeaderColumn>
+                        <TableHeaderColumn dataField='property' width="190" className='tdBg' columnClassName="tdBg" dataSort>Details</TableHeaderColumn>
                     </BootstrapTable>
                 </div>
                 <div className="panel-footer panel-foot-margin"></div>

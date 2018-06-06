@@ -47,7 +47,7 @@ export default class MoviesPage extends Component {
                     </div>
                 </div>
                 <div className="table-container">
-                    <BootstrapTable data={ this.state.moviesArr} pagination search={ true } options={options}>
+                    <BootstrapTable data={ this.state.moviesArr}options={options}>
                         <TableHeaderColumn dataField='original_title'  width="320" columnClassName="tdBg" dataSort isKey>Title</TableHeaderColumn>
                         <TableHeaderColumn dataField='vote_average' width="190" className='tdBg' columnClassName="tdBg" dataSort>Rating</TableHeaderColumn>
                         <TableHeaderColumn dataField='createdAt' width="160" className='tdBg' columnClassName="tdBg" dataFormat={this.userDetailsButton}>User Details</TableHeaderColumn>
