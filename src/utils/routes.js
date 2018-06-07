@@ -1,9 +1,3 @@
-/**
- * Created by joewolfgram on 3/1/17.
- */
-/**
- * Created by joewolfgram on 2/8/17.
- */
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Pages from "../components/pages";
