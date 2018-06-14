@@ -1,24 +1,24 @@
 export var API = {
-    baseURL: 'https://api.themoviedb.org/3/movie/',
-    APIKey: '?api_key=c71c5ea3fc135459eee67daa732e0bee'
+  baseURL: "https://api.themoviedb.org/3/",
+  APIKey: "api_key=fdd078e3ab47940c24288be62f983f1c"
 };
 
 export let getMovies = () => {
-    return new Promise((resolve, reject) => {
-        fetch(API.baseURL + 'popular' + API.APIKey).then((movies) => {
-            resolve(movies.json());
-        }).catch((err) => {
-            reject(err);
-        })
-    });
+  return fetch(`${API.baseURL}movie/popular?${API.APIKey}`).then(movies => {
+    return movies.json();
+  });
 };
 
-export let getMovieById = (id) => {
-  return new Promise((resolve, reject) => {
-      fetch(API.baseURL + id + API.APIKey).then((movie) => {
-          resolve(movie.json());
-      }).catch((err) => {
-          reject(err);
-      })
+export let getMovieById = id => {
+  return fetch(`${API.baseURL}movie/${id}?${API.APIKey}`).then(movie => {
+    return movie.json();
+  });
+};
+
+export let getMostPopularMoviesByYear = year => {
+  return fetch(
+    `${API.baseURL}discover/movie?primary_release_year=${year}&sort_by=vote_average.desc&${API.APIKey}`
+  ).then(movie => {
+    return movie.json();
   });
 };
